@@ -1,5 +1,6 @@
 package com.mycompany.dota3;
 
+
 public abstract class Game {
     private String name;
     private int health;
