@@ -10,44 +10,47 @@ public class TurnGame extends Dota3{
     private Game enemy;
     private String difficulty;
 
-    public TurnGame(Game player, String difficulty) {
+   Scanner sc = new Scanner(System.in); 
+    //constructor
+   public TurnGame(Game player, String difficulty) {
         this.player = player;
         this.difficulty = difficulty;
-        initializeEnemy(difficulty);
+        initializeEnemy();
     }
 
-   private void initializeEnemy(String difficulty) {
+    private void initializeEnemy() {
         List<Game> enemies = new ArrayList<>();
-        
+
         // Create enemies with different health and damage based on difficulty
         switch (difficulty.toLowerCase()) {
             case "easy":
-                enemies.add(new Warrior("Faceless Void", 50));
-                enemies.add(new Warrior("Medusa", 50));
-                enemies.add(new Warrior("Shadow fiend", 50));
-                break;
-            case "medium":
                 enemies.add(new Warrior("Faceless Void", 100));
                 enemies.add(new Warrior("Medusa", 100));
                 enemies.add(new Warrior("Shadow fiend", 100));
                 break;
+            case "medium":
+                enemies.add(new Warrior("Faceless Void", 200));
+                enemies.add(new Warrior("Medusa", 200));
+                enemies.add(new Warrior("Shadow fiend", 200));
+                break;
             case "hard":
-                enemies.add(new Warrior("Faceless Void", 150));
-                enemies.add(new Warrior("Medusa", 150));
-                enemies.add(new Warrior("Shadow fiend", 150));
+                enemies.add(new Warrior("Faceless Void", 300));
+                enemies.add(new Warrior("Medusa", 300));
+                enemies.add(new Warrior("Shadow fiend", 300));
                 break;
             default:
-                throw new IllegalArgumentException("Invalid difficulty level");
+                throw new IllegalArgumentException("Invalid difficulty level.");
         }
-        
+
         Collections.shuffle(enemies);
         enemy = enemies.get(0);
     }
 
+
     public void playGame() {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Welcome to Dota 3 The battle is about to begin!");
+        System.out.println("\n\nWELCOME TO DOTA 3 THE BATTLE IS ABOUT TO BEGIN!");
 
         while (player != null && enemy != null && player.getHealth() > 0 && enemy.getHealth() > 0) {
             System.out.println("Player's turn - " + player.getName());
@@ -85,7 +88,7 @@ public class TurnGame extends Dota3{
                 attackType = "basic";
                 break;
             case 2:
-                attackType = "skill";
+                attackType = "skill"; 
                 break;
             case 3:
                 attackType = "special";
